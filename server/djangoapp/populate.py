@@ -1,4 +1,5 @@
 from .models import CarMake, CarModel
+from django.urls import path
 
 def initiate():
     car_make_data = [
