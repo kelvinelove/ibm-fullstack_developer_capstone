@@ -6,8 +6,7 @@ from django.http import JsonResponse
 
 load_dotenv()
 
-backend_url = os.getenv(
-    'backend_url', default="http://localhost:3030")
+backend_url = "https://kchawora-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai"
 sentiment_analyzer_url = os.getenv(
     'sentiment_analyzer_url',
     default="http://localhost:5050/")
@@ -22,10 +21,14 @@ def get_request(endpoint, **kwargs):
     try:
         # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
+        print(f"Response status code: {response.status_code}")
+        print(f"Response content: {response.text}")
         return response.json()
-    except:
-        # If any error occurs
-        print("Network exception occurred")
+    except Exception as e:
+        print(f"Network exception occurred: {str(e)}")
+        print(f"Backend URL: {backend_url}")
+        print(f"Full request URL: {request_url}")
+        return []  # Return empty list instead of None
 
 def analyze_review_sentiments(text):
     request_url = sentiment_analyzer_url + "analyze/" + text
