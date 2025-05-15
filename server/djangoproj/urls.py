@@ -20,6 +20,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve
 import os
+from django.http import JsonResponse
+from .restapis import get_request
+from .views import get_dealerships
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +33,6 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name="index.html")),
     path('register/', TemplateView.as_view(template_name="index.html")),
     path('manifest.json', serve, {'path': 'manifest.json', 'document_root': os.path.join(settings.BASE_DIR, 'frontend/build')}),
+    path('get_dealerships/', get_dealerships, name='get_dealerships'),
+    path('get_dealerships/<str:state>/', get_dealerships, name='get_dealerships_by_state'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
