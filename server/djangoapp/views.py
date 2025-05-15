@@ -80,6 +80,8 @@ def get_dealerships(request, state=None):
     else:
         endpoint = "/fetchDealers"
     dealerships = get_request(endpoint)
+    if dealerships is None:
+        dealerships = []
     return JsonResponse({"status": 200, "dealers": dealerships})
 
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
