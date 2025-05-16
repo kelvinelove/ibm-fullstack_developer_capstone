@@ -1,0 +1,17 @@
+{
+    "esversion": 8,
+    "node": true,
+    "browser": true,
+    "strict": false,
+    "undef": true,
+    "unused": true,
+    "indent": 2,
+    "maxlen": 80,
+    "globals": {
+        "React": true,
+        "ReactDOM": true,
+        "BrowserRouter": true,
+        "Routes": true,
+        "Route": true
+    }
+} 
